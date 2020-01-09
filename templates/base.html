@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>{% block title %} Home {% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.js' %}">
+
+    {# block for individual page css #}
+    {% block css_block %}
+    {% endblock %}
+    <style>
+        .navbar_css{
+            border-radius:0px !important;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'partials/navbar.html' %}
+
+    <!-- Jumbotron -->
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Bootstrap Tutorial</h1>
+        <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
+      </div>
+<!--      <p>This is some text.</p>-->
+<!--      <p>This is another text.</p>-->
+    </div>
+
+    {% block contents %}
+        <p>This is home page.</p>
+    {% endblock %}
+
+
+</body>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {# block for individual page js #}
+    {% block js_block %}
+    {% endblock %}
+</html>
