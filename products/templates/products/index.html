@@ -4,10 +4,361 @@
 
 {% block css_block %}
 
+<style>
+<!--    body{font-family: 'Quicksand', sans-serif;}-->
+       h4{
+            font-weight: 600;
+        }
+        p{
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .price{
+            font-size: 30px;
+            margin: 0 auto;
+            color: #333;
+        }
+
+        .thumbnail{
+            opacity:0.70;
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+        .thumbnail:hover{
+            opacity:1.00;
+            box-shadow: 0px 0px 10px #4bc6ff;
+        }
+        .line{
+            margin-bottom: 5px;
+        }
+        @media screen and (max-width: 770px) {
+            .right{
+                float:left;
+                width: 100%;
+            }
+        }
+        span.thumbnail {
+            border: 1px solid #00c4ff !important;
+        border-radius: 0px !important;
+        -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.16);
+        -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.16);
+        box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.16);
+        padding: 10px;
+    }
+    .container h4{margin-top:70px; margin-bottom:30px;}
+    button {    margin-top: 6px;
+    }
+    .right {
+        float: right;
+        border-bottom: 2px solid #0a5971;
+    }
+    .btn-info {
+        color: #fff;
+        background-color: #19b4e2;
+        border-color: #19b4e2;
+        font-size:13px;
+        font-weight:600;
+    }
+
+
+
+    .collapsed-icon-toggle.collapsed .on-closed {
+      display: initial;
+    }
+    .collapsed-icon-toggle.collapsed .on-opened {
+      display: none;
+    }
+    .collapsed-icon-toggle .on-closed {
+      display: none;
+    }
+    .collapsed-icon-toggle .on-opened {
+      display: initial;
+    }
+    .scroll-v-250px {
+      max-height: 250px;
+      overflow-y: scroll;
+    }
+    .padding-v-xs {
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
+    .btn.ico span.icon {
+      opacity: 0;
+    }
+    .btn.ico.active span.icon {
+      opacity: 1;
+    }
+</style>
+
 {% endblock %}
 
 {% block contents %}
-    <p>This is product Home</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+
+
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" href="#filter1">
+                                    Filter
+                                </a>
+                                <a class="pull-right" data-toggle="collapse" href="#filter1">
+                                    <span class="glyphicon glyphicon-filter"></span>
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="filter1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="filter-setting">
+                                <form action="" mathod="GET">
+                                    <label>Lorem Ipsum</label>
+                                    <a class="pull-right collapsed-icon-toggle" href="#coll-0" data-toggle="collapse">
+                                        <span class="glyphicon glyphicon-minus on-opened"></span>
+                                        <span class="glyphicon glyphicon-plus on-closed"></span>
+                                    </a>
+                                    <br/>
+                                    <div id="coll-0" class="collapse in">
+                                        <input type="text" placeholder="150" style="width: 40%;" />
+                                        -
+                                        <input type="text" placeholder="10000" style="width: 40%;" />
+                                    </div>
+                                    <hr class="line"/>
+                                    <label>Lorem Ipsum</label>
+                                    <a class="pull-right collapsed-icon-toggle" href="#coll-1" data-toggle="collapse">
+                                        <span class="glyphicon glyphicon-minus on-opened"></span>
+                                        <span class="glyphicon glyphicon-plus on-closed"></span>
+                                    </a>
+                                    <br/>
+                                    <div id="coll-1" class="collapse in">
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 1</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 1</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 1</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 1</span>
+                                        </div>
+                                    </div>
+                                    <hr class="line"/>
+                                    <label>Lorem Ipsum</label>
+                                    <a class="pull-right collapsed-icon-toggle" href="#coll-2" data-toggle="collapse">
+                                        <span class="glyphicon glyphicon-minus on-opened"></span>
+                                        <span class="glyphicon glyphicon-plus on-closed"></span>
+                                    </a>
+                                    <br/>
+                                    <div id="coll-2" class="scroll-v-250px collapse in">
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                        <label class="btn btn-default btn-xs ico">
+                                            <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                            <span class="icon glyphicon glyphicon-ok"></span>
+                                        </label>
+                                            <span>Lorem Ipsum 1</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 2</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 3</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 4</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 5</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 6</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 7</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 8</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 9</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 10</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 11</span>
+                                        </div>
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                            <label class="btn btn-default btn-xs ico">
+                                                <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                            </label>
+                                            <span>Lorem Ipsum 12</span>
+                                        </div>
+                                    </div>
+                                    <hr class="line"/>
+                                    <label>Lorem Ipsum</label>
+                                    <a class="pull-right collapsed-icon-toggle" href="#coll-3" data-toggle="collapse">
+                                        <span class="glyphicon glyphicon-minus on-opened"></span>
+                                        <span class="glyphicon glyphicon-plus on-closed"></span>
+                                    </a>
+                                    <br/>
+                                    <div id="coll-3" class="scroll-v-250px collapse in">
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                        <label class="btn btn-default btn-xs ico">
+                                            <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                            <span class="icon glyphicon glyphicon-ok"></span>
+                                        </label>
+                                            <span>Lorem Ipsum 1</span>
+                                        </div>
+                                    </div>
+                                    <hr class="line"/>
+                                    <label>Lorem Ipsum</label>
+                                    <a class="pull-right collapsed-icon-toggle" href="#coll-4" data-toggle="collapse">
+                                        <span class="glyphicon glyphicon-minus on-opened"></span>
+                                        <span class="glyphicon glyphicon-plus on-closed"></span>
+                                    </a>
+                                    <br/>
+                                    <div id="coll-4" class="scroll-v-250px collapse in">
+                                        <div class="padding-v-xs" data-toggle="buttons">
+                                        <label class="btn btn-default btn-xs ico">
+                                            <input type="checkbox" name=""
+                                                   value="" autocomplete="off"/>
+                                            <span class="icon glyphicon glyphicon-ok"></span>
+                                        </label>
+                                            <span>Lorem Ipsum 1</span>
+                                        </div>
+                                    </div>
+                                    <hr class="line"/>
+                                    <button type="submit" class="btn btn-block btn-success">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-9">
+
+
+                <div class="row">
+                    {% for product in products %}
+
+                            <div class="col-md-4 col-sm-4">
+                                <span class="thumbnail">
+                                    <img src="https://s12.postimg.org/41uq0fc4d/item_2_180x200.png" alt="...">
+                                    <h4>{{ product.title }}</h4>
+                                    <div class="ratings">
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    </div>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                                    <hr class="line">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <p class="price">{{ product.price }}</p>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                         <a href="http://cookingfoodsworld.blogspot.in/" target="_blank" >	<button class="btn btn-info right" >Add to Cart</button></a>
+                                        </div>
+
+                                    </div>
+                                </span>
+                            </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
 
 
