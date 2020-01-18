@@ -129,14 +129,15 @@ USE_TZ = True
 
 
 # Path for static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static_root')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static', 'static_files'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-# path for media files like images
+
+# Path for media files that are being uploaded by user ( like images )
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 MEDIA_URL  = '/media/'
 
