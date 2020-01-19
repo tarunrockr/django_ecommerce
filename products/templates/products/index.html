@@ -92,6 +92,9 @@
 
 {% endblock %}
 
+{% block jumbotron %}
+{% endblock %}
+
 {% block contents %}
 
     <div class="container">
@@ -330,7 +333,11 @@
 
                             <div class="col-md-4 col-sm-4">
                                 <span class="thumbnail">
-                                    <img src="https://s12.postimg.org/41uq0fc4d/item_2_180x200.png" alt="...">
+                                    {% for item in product.productimage_set.all %}
+                                        {% if item.featured %}
+                                            <img src="{{ item.image.url }}"  style="height: 40% !important;" />
+                                        {% endif %}
+                                    {% endfor %}
                                     <h4>{{ product.title }}</h4>
                                     <div class="ratings">
                                         <span class="glyphicon glyphicon-star"></span>
@@ -346,10 +353,20 @@
                                             <p class="price">{{ product.price }}</p>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
-                                         <a href="http://cookingfoodsworld.blogspot.in/" target="_blank" >	<button class="btn btn-info right" >Add to Cart</button></a>
+                                         <a href="{% url 'product.detail'  id=product.id %}" target="_blank" >	<button class="btn btn-info right" >View Detail</button></a>
                                         </div>
 
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <a class="btn btn-primary left">Buy Now</a>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <a class="btn btn-primary right">Add to Cart</a>
+                                        </div>
+                                    </div>
+
                                 </span>
                             </div>
 
