@@ -1,3 +1,4 @@
+from django.urls import  reverse
 from django.db import models
 
 # Create your models here.
@@ -17,6 +18,10 @@ class Product(models.Model):
 
     def get_price(self):
         return self.price
+
+    def get_absolute_url(self):
+        # return '/products/product_detail/%s/'%(self.id)
+        return reverse('product.detail', kwargs={'id': self.id})
 
     class Meta:
         unique_together=[('title', 'slug'), ]

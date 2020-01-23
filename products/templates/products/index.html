@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block title %} Product Home {% endblock %}
 
 {% block css_block %}
@@ -333,11 +335,15 @@
 
                             <div class="col-md-4 col-sm-4">
                                 <span class="thumbnail">
-                                    {% for item in product.productimage_set.all %}
-                                        {% if item.featured %}
-                                            <img src="{{ item.image.url }}"  style="height: 40% !important;" />
-                                        {% endif %}
-                                    {% endfor %}
+                                    {% if product.productimage_set.all %}
+                                        {% for item in product.productimage_set.all %}
+                                            {% if item.featured %}
+                                                <img class="img-responsive" src="{{ item.image.url }}"  style="height: 40% !important;" >
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <img class="img-responsive" src="{% static 'images/default-image.png' %}">
+                                    {% endif %}
                                     <h4>{{ product.title }}</h4>
                                     <div class="ratings">
                                         <span class="glyphicon glyphicon-star"></span>
@@ -346,14 +352,15 @@
                                         <span class="glyphicon glyphicon-star"></span>
                                         <span class="glyphicon glyphicon-star-empty"></span>
                                     </div>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                                    <p>{{ product.description|truncatewords:15 }}</p>
                                     <hr class="line">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6">
                                             <p class="price">{{ product.price }}</p>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
-                                         <a href="{% url 'product.detail'  id=product.id %}" target="_blank" >	<button class="btn btn-info right" >View Detail</button></a>
+                                            <!--<a href="{% url 'product.detail'  id=product.id %}" target="_blank" >	<button class="btn btn-info right" >View Detail</button></a>-->
+                                             <a href="{{ product.get_absolute_url }}" target="_blank" >	<button class="btn btn-info right" >View Detail</button></a>
                                         </div>
 
                                     </div>

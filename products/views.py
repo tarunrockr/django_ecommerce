@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from .models import Product
+from .models import Product, ProductImage
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -27,10 +28,20 @@ def product_list(request):
 def product_detail(request, id):
 
     # try:
+
+        # Fetching specific product detail
         product_data = Product.objects.raw("SELECT * FROM products_product WHERE id=%s", [id])[0]
         # product_data = Product.objects.get(id=id)
+
+        # Fetching all the images related to this product
+
+        #product_images = ProductImage.objects.filter(product=product_data.id)
+        product_images = ProductImage.objects.raw("SELECT * FROM products_productimage WHERE product_id = %s", [product_data.id])
+        # print(product_images)
+
+
         template = 'products/productDetail.html'
-        context={'product_data': product_data}
+        context={'product_data': product_data, 'product_images': product_images}
         return render(request, template, context)
     # except:
     #     raise Http404
