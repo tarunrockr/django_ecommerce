@@ -1,0 +1,31 @@
+.navbar_css{
+    border-radius:0px !important;
+}
+.country_list_class{
+    position: absolute;
+    z-index: 2;
+    margin-top: 17%;
+    min-width: 83%;
+}
+.search_ul{
+    background-color:#eee;
+    cursor:pointer;
+}
+.search_li{
+    padding:12px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #fff;
+}
+.custom_style{
+    width: 102% !important;
+    background-color: #4e7fa9;
+    color: #fff;
+}
+.search_headline{
+    background-color: #38763a;
+    color: #fff;
+    margin-left: 30px;
+    padding: 9px;
+    font-family: monospace;
+}

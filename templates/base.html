@@ -4,16 +4,13 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.js' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" >
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" >
 
     {# block for individual page css #}
     {% block css_block %}
     {% endblock %}
-    <style>
-        .navbar_css{
-            border-radius:0px !important;
-        }
-    </style>
+    <style> </style>
 </head>
 <body>
 
@@ -38,6 +35,40 @@
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        $(function(){
+            $(document).on('keyup','#search',function(){
+                var text_data = $(this).val();
+
+                if(text_data != ''){
+                    $.ajax({
+                        url:'{% url 'product.search.autocomplete' %}',
+                        method:'post',
+                        type:'json',
+                        data:{query:text_data,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                        success:function(data){
+                            //alert(data[0]['data']);
+                            //console.log(data[0]['data']); return false;
+                            $('#country_list').fadeIn();
+                            $('#country_list').html(data[0]['data']);
+                        }
+                    });
+                }else{
+                    $('#country_list').html('');
+                }
+            });
+            $(document).on('click','.result_li',function(){
+                $('#search').val($(this).text());
+                $('#country_list').fadeOut();
+            });
+            $(document).on('mouseover','.result_li',function(){
+                $(this).css({'background-color':'#fff','color':'#4e7fa9'});
+            });
+            $(document).on('mouseout','.result_li',function(){
+                $(this).css({'background-color':'#4e7fa9','color':'#fff'});
+            });
+        });
+    </script>
     {# block for individual page js #}
     {% block js_block %}
     {% endblock %}
