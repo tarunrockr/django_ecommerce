@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Cart {% endblock %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block contents %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2>Cart Items: </h2>
+
+                {% if empty %}
+                    <h3 style="text-align-center">{{ empty_message }}</h3>
+                {% else %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart.products.all %}
+                                <tr>
+                                    <td>{{ item }}</td>
+                                    <td>{{ item.price }}</td>
+                                    <td><a href="{% url 'carts.update_cart' item.id %}" class="btn-sm btn-primary">Remove</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td>Total: {{ cart.total }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

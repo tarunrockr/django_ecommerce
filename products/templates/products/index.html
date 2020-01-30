@@ -369,7 +369,7 @@
                                             <a class="btn btn-primary left">Buy Now</a>
                                         </div>
                                         <div class="col-md-6 col-sm-6">
-                                            <a class="btn btn-primary right">Add to Cart</a>
+                                            <a href="{% url 'carts.update_cart' product.id %}" class="btn btn-primary right">Add to Cart</a>
                                         </div>
                                     </div>
 

@@ -21,7 +21,8 @@
           </div>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="{% url 'carts.show_cart' %}">Cart {{ request.session.cart_item_count }}</a></li>
+          <li><a href="#"><span class="fa fa-user"></span> Register</a></li>
           <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
       </div>

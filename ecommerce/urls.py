@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('admin/', admin.site.urls),
     path('products/', include('products.urls')),
+    path('carts/', include('carts.urls')),
 ]
 
 
