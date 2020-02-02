@@ -29,3 +29,16 @@
     padding: 9px;
     font-family: monospace;
 }
+
+.cart_badge{
+    margin-top: -50%;
+}
+
+.item_quantity_class{
+    width: 14%;
+    border-radius: 6px;
+}
+
+.item_quantity_change_class{
+    border-radius: 13px;
+}

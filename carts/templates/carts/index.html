@@ -21,22 +21,29 @@
                             <tr>
                                 <th>Item</th>
                                 <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for item in cart.products.all %}
-                                <tr>
-                                    <td>{{ item }}</td>
-                                    <td>{{ item.price }}</td>
-                                    <td><a href="{% url 'carts.update_cart' item.id %}" class="btn-sm btn-primary">Remove</a></td>
+                            {% for item in cart.cartitem_set.all %}
+                                <tr id="">
+                                    <td>{{ item.product.title }}</td>
+                                    <td>{{ item.product.price }}</td>
+                                    <td><button class="btn btn-primary item_quantity_change_class item_minus" ><i class=""></i></button>&nbsp;&nbsp;<input type="text" disabled="disabled" class="item_quantity_class" value="{{ item.quantity }}" >&nbsp;&nbsp;<button class="btn btn-primary item_quantity_change_class"><i class=""></i></button></td>
+                                    <td>{{ item.line_total }}</td>
+                                    <td><a href="{% url 'carts.remove_cart_product' item.product_id %}" class="btn-sm btn-primary">Remove</a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>Total: {{ cart.total }}</td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>
