@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from  django.urls import reverse
+from django.http import HttpResponse, Http404, JsonResponse
 
 # Create your views here.
 from .models import Cart, CartItem
@@ -91,3 +92,69 @@ def remove_cart_product(request, id):
     cart.save()
 
     return HttpResponseRedirect(reverse('carts.show_cart'))
+
+def decrease_cart_item(request):
+
+    product_id = request.POST.get('product_id')
+
+    # Getting the cart_id from the session
+    cart_id = request.session['cart_id']
+
+    # Getting the cart on behalf of cart_id in session
+    cart = Cart.objects.get(id=cart_id)
+
+    # Checking if product is present in cart or not
+    if CartItem.objects.filter(cart_id=cart_id, product_id=product_id).exists() == True:
+        instance = CartItem.objects.get( cart_id=cart_id, product_id=product_id)
+        if(instance.quantity > 1):
+            # Get product data
+            product = Product.objects.get(pk=product_id)
+            instance.quantity   = instance.quantity - 1
+            instance.line_total = instance.quantity *float(product.price)
+            instance.save()
+        else:
+            instance.delete()
+
+    # Updating the cart
+    new_total = 0.00
+    for item in cart.cartitem_set.all():
+        new_total += float(item.line_total)
+    request.session['cart_item_count'] = cart.cartitem_set.count()
+    cart.total = new_total
+    cart.save()
+
+    data = [{'data': 'ok'}]
+    return JsonResponse(data, safe=False)
+
+def increase_cart_item(request):
+    product_id = request.POST.get('product_id')
+
+    # Getting the cart_id from the session
+    cart_id = request.session['cart_id']
+
+    # Getting the cart on behalf of cart_id in session
+    cart = Cart.objects.get(id=cart_id)
+
+    # Checking if product is present in cart or not
+    if CartItem.objects.filter(cart_id=cart_id, product_id=product_id).exists() == True:
+        instance = CartItem.objects.get(cart_id=cart_id, product_id=product_id)
+        # Get product data
+        product = Product.objects.get(pk=product_id)
+        instance.quantity = instance.quantity + 1
+        instance.line_total = instance.quantity * float(product.price)
+        instance.save()
+
+
+    # Updating the cart
+    new_total = 0.00
+    for item in cart.cartitem_set.all():
+        new_total += float(item.line_total)
+    request.session['cart_item_count'] = cart.cartitem_set.count()
+    cart.total = new_total
+    cart.save()
+
+    data = [{'data': 'ok'}]
+    return JsonResponse(data, safe=False)
+
+
+

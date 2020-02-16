@@ -31,7 +31,7 @@
                                 <tr id="">
                                     <td>{{ item.product.title }}</td>
                                     <td>{{ item.product.price }}</td>
-                                    <td><button class="btn btn-primary item_quantity_change_class item_minus" ><i class=""></i></button>&nbsp;&nbsp;<input type="text" disabled="disabled" class="item_quantity_class" value="{{ item.quantity }}" >&nbsp;&nbsp;<button class="btn btn-primary item_quantity_change_class"><i class=""></i></button></td>
+                                    <td><button class="btn btn-primary item_quantity_change_class item_minus" data-id="{{ item.product_id }}" ><i class="fa fa-minus"></i></button>&nbsp;&nbsp;<input type="text" disabled="disabled" class="item_quantity_class" value="{{ item.quantity }}" >&nbsp;&nbsp;<button class="btn btn-primary item_quantity_change_class item_plus" data-id="{{ item.product_id }}" ><i class="fa fa-plus"></i></button></td>
                                     <td>{{ item.line_total }}</td>
                                     <td><a href="{% url 'carts.remove_cart_product' item.product_id %}" class="btn-sm btn-primary">Remove</a></td>
                                 </tr>
@@ -52,5 +52,53 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block js_block %}
+
+    <script>
+        $(function(){
+
+            $(document).on('click','.item_minus',function(){
+                var product_id = $(this).attr('data-id');
+                if(product_id){
+                    $.ajax({
+                        url: '{% url 'carts.minus' %}',
+                        method: 'post',
+                        dataType: 'json',
+                        data: { product_id: product_id, csrfmiddlewaretoken: '{{ csrf_token }}' },
+                        success: function(data){
+                            //alert(data[0]['data']);
+                            //console.log(data[0]['data']); return false;
+                            if(data[0]['data']=='ok'){
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click','.item_plus',function(){
+                var product_id = $(this).attr('data-id');
+                if(product_id){
+                    $.ajax({
+                        url: '{% url 'carts.plus' %}',
+                        method: 'post',
+                        dataType: 'json',
+                        data: { product_id: product_id, csrfmiddlewaretoken: '{{ csrf_token }}' },
+                        success: function(data){
+                            //alert(data[0]['data']);
+                            //console.log(data[0]['data']); return false;
+                            if(data[0]['data']=='ok'){
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
 
 {% endblock %}

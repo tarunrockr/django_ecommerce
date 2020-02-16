@@ -37,6 +37,7 @@
 .item_quantity_class{
     width: 14%;
     border-radius: 6px;
+    text-align:center !important;
 }
 
 .item_quantity_change_class{

@@ -4,7 +4,8 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.js' %}">
-    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" >
+    <!--    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" > -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}" >
 
     {# block for individual page css #}
@@ -45,7 +46,7 @@
                         url:'{% url 'product.search.autocomplete' %}',
                         method:'post',
                         type:'json',
-                        data:{query:text_data,csrfmiddlewaretoken: '{{ csrf_token }}'},
+                        data:{query:text_data, csrfmiddlewaretoken: '{{ csrf_token }}'},
                         success:function(data){
                             //alert(data[0]['data']);
                             //console.log(data[0]['data']); return false;
