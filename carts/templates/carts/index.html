@@ -33,7 +33,7 @@
                                     <td>{{ item.product.price }}</td>
                                     <td><button class="btn btn-primary item_quantity_change_class item_minus" data-id="{{ item.product_id }}" ><i class="fa fa-minus"></i></button>&nbsp;&nbsp;<input type="text" disabled="disabled" class="item_quantity_class" value="{{ item.quantity }}" >&nbsp;&nbsp;<button class="btn btn-primary item_quantity_change_class item_plus" data-id="{{ item.product_id }}" ><i class="fa fa-plus"></i></button></td>
                                     <td>{{ item.line_total }}</td>
-                                    <td><a href="{% url 'carts.remove_cart_product' item.product_id %}" class="btn-sm btn-primary">Remove</a></td>
+                                    <td><a href="{% url 'carts.remove_cart_product' item.product_id %}" class="btn btn-primary" title="Delete"><i class="fa fa-trash"></i></i></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

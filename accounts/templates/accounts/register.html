@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Login {% endblock %}
+
+{% block css_block %}
+{% endblock %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block contents %}
+
+    <div class="container" >
+
+        <div class="col-md-6 col-lg-6 col-sm-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
+
+            <div class="panel panel-default login_panel_class">
+              <div class="panel-heading login_panel_heading">Register</div>
+              <div class="panel-body">
+
+                  <form name="register_form" id="register_form" method="post" action="{% url 'register' %}" >
+
+                      <div class="row">
+                          <div class="col-md-6 col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="first_name" class="register_label_top_class"><b>First Name:</b></label><br>
+                                    <input type="text" class="form-control login_input_class" name="first_name" id="first_name" autocomplete="off" placeholder="First Name">
+                                    {% csrf_token %}
+                                </div>
+                          </div>
+                          <div class="col-md-6 col-lg-6 col-sm-6">
+                              <div class="form-group">
+                                    <label for="last_name" class="register_label_top_class"><b>Last Name:</b></label><br>
+                                    <input type="text" class="form-control login_input_class" name="last_name" id="last_name" autocomplete="off" placeholder="Last Name">
+                                </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="col-md-6 col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="email" class="register_label_top_class"><b>Email:</b></label><br>
+                                    <input type="text" class="form-control login_input_class" name="email" id="email" autocomplete="off" placeholder="Email">
+                                </div>
+                          </div>
+                          <div class="col-md-6 col-lg-6 col-sm-6">
+                              <div class="form-group">
+                                    <label for="mobile" class="register_label_top_class"><b>Mobile Number:</b></label><br>
+                                    <input type="text" class="form-control login_input_class" name="mobile" id="mobile" autocomplete="off" placeholder="Last Name">
+                                </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+<!--                          <div class="col-md-12 col-lg-12 col-sm-12">-->
+                                <div class="form-group">
+                                    <label for="password" class="register_label_bottom_class"><b>Password:</b></label><br>
+                                    <input type="password" class="form-control register_bottom_input_class" name="password" id="password" placeholder="Password">
+                                </div>
+<!--                          </div>-->
+                      </div>
+
+                      <div class="row">
+                          <div class="form-group">
+                            <input type="submit" class="register_button_class" value="Register">
+                          </div>
+                      </div>
+
+                   </form>
+
+
+              </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block js_block %}
+{% endblock %}

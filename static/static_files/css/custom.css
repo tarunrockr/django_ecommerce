@@ -43,3 +43,90 @@
 .item_quantity_change_class{
     border-radius: 13px;
 }
+
+.search_bar_class{
+    height: 28px;
+}
+
+.cart_class{
+    font-size: 18px;
+}
+
+.login_input_class{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0 0 10%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 0px;
+}
+
+.login_label_class{
+    margin-left: 34px;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.login_panel_class{
+    border-radius: 0px;
+    border-color: #222222;
+}
+
+.login_button_class{
+    background-color: #222222;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 80%;
+    margin-left: 10%;
+}
+.login_button_class:hover{
+    opacity: 0.8;
+}
+
+.login_panel_heading{
+    border-color: #222222 !important;
+    background-color: #222222 !important;
+    color: #fff !important;
+    border-radius: 0px !important;
+}
+
+.register_label_top_class{
+    margin-left: 10%;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.register_label_bottom_class{
+    margin-left: 7%;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
+.register_bottom_input_class{
+    width: 86%;
+    padding: 12px 20px;
+    margin: 8px 0 0 7%;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 0px;
+}
+
+.register_button_class{
+    background-color: #222222;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 86%;
+    margin-left: 7%;
+}
+
+.register_button_class:hover{
+    opacity: 0.8;
+}
