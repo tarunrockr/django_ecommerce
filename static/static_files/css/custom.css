@@ -130,3 +130,8 @@
 .register_button_class:hover{
     opacity: 0.8;
 }
+
+.alert-class{
+    width: 86%;
+    margin-left: 7%;
+}
