@@ -59,7 +59,7 @@
                           <div class="col-md-6 col-lg-6 col-sm-6">
                               <div class="form-group">
                                     <label for="mobile" class="register_label_top_class"><b>Mobile Number:</b></label><br>
-                                    <input type="text" class="form-control login_input_class" name="mobile" id="mobile" autocomplete="off" placeholder="Mobile Number">
+                                    <input type="number" class="form-control login_input_class" name="mobile" id="mobile" autocomplete="off" placeholder="Mobile Number">
                                 </div>
                           </div>
                       </div>
@@ -97,11 +97,41 @@
             rules:{
                 first_name:{
                     required:true
+                },
+                last_name:{
+                    required: true
+                },
+                email:{
+                    required: true,
+                    email:true
+                },
+                mobile:{
+                    required:true,
+                    minlength:10
+                },
+                password:{
+                    required:true,
+                    minlength: 6
                 }
             },
             messages:{
                 first_name:{
-                    required:'First Name Required'
+                    required: "First name required"
+                },
+                last_name:{
+                    required: "Last name required"
+                },
+                email:{
+                    required: "Email required",
+                    email:    "Email format is incorrect"
+                },
+                mobile:{
+                    required:   "Mobile Number required",
+                    minlength: "Minimum 10 digit required"
+                },
+                password:{
+                    required:  "Password required",
+                    minlength: "Minimum 6 digit password required"
                 }
             }
         });

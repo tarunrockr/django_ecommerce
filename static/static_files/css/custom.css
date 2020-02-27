@@ -135,3 +135,9 @@
     width: 86%;
     margin-left: 7%;
 }
+
+label.error{
+    margin-left: 10%;
+    color: red;
+    font-size: 13px;
+}
