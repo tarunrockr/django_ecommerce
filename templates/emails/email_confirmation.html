@@ -3,10 +3,10 @@
 
 </head>
 <body>
-    <p>Hi {{ user.first_name }} {{ user.last_name }}</p>
-    <br>
-    <p><a href="javascript:void(0);">Click Here</a> for email confirmation for E-Com.</p>
-    <br>
+    <p>Hi <strong>{{ user.first_name }} {{ user.last_name }}</strong></p>
+
+    <p><a href="{{ custom_url }}"><u>Click Here</u></a> for email confirmation for E-Com.</p>
+
     <p>Thanks</p>
 </body>
 </html>

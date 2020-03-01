@@ -20,12 +20,24 @@
               <div class="panel-heading login_panel_heading">Login</div>
               <div class="panel-body">
 
-                  <form>
+                  <div class="row">
+                       {% for message in messages %}
+                            <div class="alert {{ message.tags }} alert-dismissible alert-class " role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message | safe }}
+                            </div>
+                        {% endfor %}
+                   </div>
+
+                  <form name="login_form" id="login_form" method="post" action="{% url 'login.post' %}">
 
                       <div class="row">
                             <div class="form-group">
                                 <label for="email" class="login_label_class"><b>Email:</b></label><br>
                                 <input type="text" class="form-control login_input_class" name="email" id="email" placeholder="Email">
+                                {% csrf_token %}
                             </div>
                       </div>
 
