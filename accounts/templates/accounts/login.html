@@ -73,4 +73,29 @@
 {% endblock %}
 
 {% block js_block %}
+    <script>
+        $(function(){
+            $("#login_form").validate({
+                rules:{
+                    email:{
+                        required:true,
+                        email:   true
+                    },
+                    password:{
+                        required: true
+                    }
+                },
+                messages:{
+                    email:{
+                        required: "Email required",
+                        email:    "Email is invalid"
+                    },
+                    password:{
+                        required:  "Password required"
+                    }
+                }
+            });
+        });
+    </script>
+
 {% endblock %}
