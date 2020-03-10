@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Profile {% endblock %}
+
+{% block css_block %}
+<style>
+    body{
+        background: -webkit-linear-gradient(left, #080808, #333333d1);
+    }
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 70%;
+<!--    height: 100%;-->
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -20%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    color: #333;
+}
+.profile-head h6{
+    color: #0062cc;
+}
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+.profile-work{
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p{
+    font-size: 12px;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 14px;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    font-weight: 600;
+    color: #0062cc;
+}
+.edit_pro_btn{
+    border-radius: 17px;
+}
+</style>
+{% endblock %}
+
+{% block jumbotron %}
+{% endblock %}
+
+{% block contents %}
+
+
+    <div class="container emp-profile">
+<!--        <form method="post">-->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                        <div class="file btn btn-lg btn-primary">
+                            Change Photo
+                            <input type="file" name="file"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5>
+                                    {{ user_data.first_name }} {{ user_data.last_name }}
+                                </h5>
+                                <h6>
+                                    Web Developer and Designer
+                                </h6>
+                                <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">General Information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Other Information</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+<!--                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Profile"/>-->
+                    <a href="{% url 'profile' %}" name="btnAddMore" title="Profile" class="btn btn-sm btn-primary edit_pro_btn" >Profile</a>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>WORK LINK</p>
+                        <a href="">Website Link</a><br/>
+                        <a href="">Bootsnipp Profile</a><br/>
+                        <a href="">Bootply Profile</a>
+                        <p>SKILLS</p>
+                        <a href="">Web Designer</a><br/>
+                        <a href="">Web Developer</a><br/>
+                        <a href="">WordPress</a><br/>
+                        <a href="">WooCommerce</a><br/>
+                        <a href="">PHP, .Net</a><br/>
+                    </div>
+                </div>
+                <div class="col-md-8">
+
+                    <div class="row">
+                       {% for message in messages %}
+                            <div class="alert {{ message.tags }} alert-dismissible alert-class " role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{ message | safe }}
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                            <form name="edit_form_first" id="edit_form_first" action="{% url 'profile.update' %}" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>User Id</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>#</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>First Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            <input type="text" class="form-control" name="first_name" id="first_name" value="{{ user_data.first_name }}">
+                                            <input type="hidden" name="form_name" value="edit_first">
+                                            <input type="hidden" name="user_id" value="{{ user_data.id }}">
+                                            {% csrf_token %}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Last Name</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            <input type="text" class="form-control" name="last_name" id="last_name" value="{{ user_data.last_name }}">
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            <input type="text" class="form-control" name="email" id="email" value="{{ user_data.email }}">
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Phone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            <input type="text" class="form-control" name="mobile" id="mobile" value="{{ user_data.profile.mobile }}">
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Profession</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Web Developer and Designer</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="submit" class="btn brn-sm btn-primary edit_pro_btn pull-right" title="Update Info" value="Update">
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <form name="edit_form_second" id="edit_form_second" action="{% url 'profile.update' %}" method="post" >
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>City</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>
+                                                <input type="text" class="form-control" name="city" id="city" value="{{ user_data.profile.city }}">
+                                                <input type="hidden" name="form_name" value="edit_second">
+                                                <input type="hidden" name="user_id" value="{{ user_data.id }}">
+                                                {% csrf_token %}
+
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>State</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>
+                                                <input type="text" class="form-control" name="state" id="state" value="{{ user_data.profile.state }}">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Country</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>
+                                                <input type="text" class="form-control" name="country" id="country" value="{{ user_data.profile.country }}">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Postal Code</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>
+                                                <input type="number" class="form-control" name="postal_code" id="postal_code" value="{{ user_data.profile.postal_code }}">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="submit" class="btn brn-sm btn-primary edit_pro_btn pull-right" title="Update Info" value="Update">
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--        </form>-->
+    </div>
+
+{% endblock %}
+
+{% block js_block %}
+
+    <script>
+        $(function(){
+            $("#edit_form_first").validate({
+                rules:{
+                    first_name:{
+                        required:true
+                    },
+                    last_name:{
+                        required: true
+                    },
+                    email:{
+                        required: true,
+                        email:true
+                    },
+                    mobile:{
+                        required:true,
+                        minlength:10
+                    }
+                },
+                messages:{
+                    first_name:{
+                        required: "First name required"
+                    },
+                    last_name:{
+                        required: "Last name required"
+                    },
+                    email:{
+                        required: "Email required",
+                        email:    "Email format is incorrect"
+                    },
+                    mobile:{
+                        required:   "Mobile Number required",
+                        minlength: "Minimum 10 digit required"
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

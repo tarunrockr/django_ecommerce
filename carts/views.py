@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
-from  django.urls import reverse
+from django.urls import reverse
 from django.http import HttpResponse, Http404, JsonResponse
 
 # Create your views here.

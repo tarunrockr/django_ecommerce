@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'carts.apps.CartsConfig',
     'accounts.apps.AccountsConfig',
+    'profiles.apps.ProfilesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -172,3 +173,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'mk49369@gmail.com'
 EMAIL_HOST_PASSWORD = 'eitngszvximswicz'
 EMAIL_PORT = 587
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.authentication.EmailAuthBackend',
+)

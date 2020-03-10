@@ -9,26 +9,57 @@ from django.core.mail import send_mail, EmailMessage
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.utils.crypto import get_random_string
+from django.contrib.auth import  authenticate, login
 import hashlib
+from .import authentication
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 
+def user_is_not_logged_in(user):
+    return not user.is_authenticated
+
+@user_passes_test(user_is_not_logged_in, login_url='/profiles/')
 def showLogin(request):
 
     template = 'accounts/login.html'
-    context = {}
-    return render(request, template, context)
+    return render(request, template, {} )
 
-def login(request):
-    print("In Login")
-    pass
+@user_passes_test(user_is_not_logged_in, login_url='/profiles/')
+def login_post(request):
 
+    if request.method == 'POST':
+
+        email     = request.POST['email']
+        password  = request.POST['password']
+
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            # Storing userdata in session
+            request.session['user_id']   = user.id
+            request.session['logged_in'] = True
+            request.session['email']     = user.email
+            request.session['first_name']= user.first_name
+            request.session['last_name'] = user.last_name
+
+            auth.login(request, user)
+
+            # Redirect to user profile
+            return  HttpResponseRedirect(reverse('profile'))
+        else:
+            messages.error(request, "Error: Invalid credentials.")
+            return HttpResponseRedirect(reverse('login.show'))
+    else:
+        return HttpResponseRedirect(reverse('login.show'))
+
+@user_passes_test(user_is_not_logged_in, login_url='/profiles/')
 def showRegister(request):
 
     templete = 'accounts/register.html'
     context = {}
     return render(request, templete, context)
 
+@user_passes_test(user_is_not_logged_in, login_url='/profiles/')
 def register(request):
 
     if request.method == 'POST':
@@ -44,7 +75,7 @@ def register(request):
             email      = request.POST.get('email')
             mobile     = request.POST.get('mobile')
             password   = request.POST.get('password')
-            username     = get_random_string(length=6, allowed_chars='1234567890')
+            username   = get_random_string(length=6, allowed_chars='1234567890')
 
             user = User.objects.create_user( first_name=first_name, last_name=last_name, username=username, email=email, password=password )
             user.profile.mobile = mobile
@@ -125,4 +156,7 @@ def email_verification(request, hash, user_id):
         messages.error(request, "Error: User does not exists.")
         return HttpResponseRedirect(reverse('login.show'))
 
-
+def logout(request):
+    auth.logout(request)
+    messages.success(request, "Success: Logout successfully.")
+    return HttpResponseRedirect(reverse('login.show'))
