@@ -53,7 +53,7 @@ def update_profile(request):
         user.profile.city        = city
         user.profile.state       = state
         user.profile.country     = country
-        user.profile.postal_code = postal_code
+        user.profile.postal_code = postal_code if len(postal_code) > 0 else None
         user.save()
 
         messages.success(request, "Success: Profile updated successfully.")

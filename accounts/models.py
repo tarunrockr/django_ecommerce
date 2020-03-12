@@ -14,7 +14,7 @@ class Profile(models.Model):
     city        = models.CharField(max_length=50)
     state       = models.CharField(max_length=50)
     country     = models.CharField(max_length=50)
-    postal_code = models.IntegerField()
+    postal_code = models.IntegerField(null=True)
     hash        = models.TextField(null=True)
     verified    = models.IntegerField(default='0', editable=False)
     created_at  = models.DateTimeField(auto_now_add=True, auto_now=False)
