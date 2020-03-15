@@ -179,3 +179,5 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'accounts.authentication.EmailAuthBackend',
 )
+
+SESSION_SAVE_EVERY_REQUEST=True

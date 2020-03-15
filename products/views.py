@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404, JsonResponse
 from .models import Product, ProductImage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
+import  json
 
 # Create your views here.
 
@@ -21,10 +22,30 @@ from django.db import connection
 
 def product_list(request):
 
+    cursor = connection.cursor()
+
+    sql="SELECT DISTINCT brand FROM products_product ORDER BY brand ASC"
+    cursor.execute(sql)
+    brands = cursor.fetchall()
+
+
+    sql = "SELECT DISTINCT color FROM products_product ORDER BY color ASC"
+    cursor.execute(sql)
+    colors = cursor.fetchall()
+
+    sql = "SELECT DISTINCT size FROM products_product ORDER BY size ASC"
+    cursor.execute(sql)
+    sizes = cursor.fetchall()
+
     product_list =  Product.objects.all()
     template     = 'products/index.html'
-    context      = {'products': product_list}
+    context      = {'products': product_list, 'brands': brands, 'colors': colors, 'sizes':sizes}
     return render(request, template, context)
+
+def  product_list_ajax(request):
+    brand = request.POST.get('brand')
+    # data = json.loads(brand)
+    print(type(brand))
 
 def product_detail(request, id):
 

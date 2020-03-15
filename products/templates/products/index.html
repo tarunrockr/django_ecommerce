@@ -21,7 +21,7 @@
         }
 
         .thumbnail{
-            opacity:0.70;
+<!--            opacity:0.70;-->
             -webkit-transition: all 0.5s;
             transition: all 0.5s;
         }
@@ -89,6 +89,28 @@
     .btn.ico.active span.icon {
       opacity: 1;
     }
+    .checkbox_class{
+        margin-left:10px;
+    }
+    .checkbox_span_class{
+
+    }
+    .filter_header{
+        font-size: 17px;
+        background-color: #337ab78a;
+        padding: 6px;
+        margin-bottom: -10px;
+        padding-top: 3px;
+        padding-bottom: 2px;
+        border-radius: 3px;
+        color: #fff;
+    }
+
+    #loading{
+        text-align:center;
+        background: url('loader.gif') no-repeat center;
+        height: 150px;
+    }
 </style>
 
 {% endblock %}
@@ -104,215 +126,82 @@
 
 
                 <div class="panel-group">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" href="#filter1">
-                                    Filter
-                                </a>
-                                <a class="pull-right" data-toggle="collapse" href="#filter1">
-                                    <span class="glyphicon glyphicon-filter"></span>
-                                </a>
-                            </h4>
-                        </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Filter By</div>
                         <div id="filter1" class="panel-collapse collapse in">
                             <div class="panel-body">
                                 <div class="filter-setting">
                                 <form action="" mathod="GET">
-                                    <label>Lorem Ipsum</label>
-                                    <a class="pull-right collapsed-icon-toggle" href="#coll-0" data-toggle="collapse">
-                                        <span class="glyphicon glyphicon-minus on-opened"></span>
-                                        <span class="glyphicon glyphicon-plus on-closed"></span>
-                                    </a>
+                                        <p class="filter_header">PRICE
+                                            <a class="pull-right collapsed-icon-toggle" href="#coll-0" data-toggle="collapse">
+                                                <span class="fa fa-minus on-opened"></span>
+                                                <span class="fa fa-plus on-closed"></span>
+                                            </a>
+                                        </p>
                                     <br/>
                                     <div id="coll-0" class="collapse in">
-                                        <input type="text" placeholder="150" style="width: 40%;" />
+                                        <input type="text" placeholder="150" id="minimum_price" style="width: 40%;" />
                                         -
-                                        <input type="text" placeholder="10000" style="width: 40%;" />
+                                        <input type="text" placeholder="10000" id="maximum_price" style="width: 40%;" />
                                     </div>
+
+
                                     <hr class="line"/>
-                                    <label>Lorem Ipsum</label>
-                                    <a class="pull-right collapsed-icon-toggle" href="#coll-1" data-toggle="collapse">
-                                        <span class="glyphicon glyphicon-minus on-opened"></span>
-                                        <span class="glyphicon glyphicon-plus on-closed"></span>
-                                    </a>
+                                        <p class="filter_header">BRAND
+                                            <a class="pull-right collapsed-icon-toggle" href="#coll-1" data-toggle="collapse">
+                                                <span class="fa fa-minus on-opened"></span>
+                                                <span class="fa fa-plus on-closed"></span>
+                                            </a>
+                                        </p>
+
                                     <br/>
-                                    <div id="coll-1" class="collapse in">
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                    <div id="coll-1" class="collapse in" >
+                                        {% for brand in brands %}
+                                            <label style="font-size:12px;" class="checkbox_class">
+                                                <input type="checkbox" value="{{ brand.0 }}" class="common_selector brand">
+                                                <span class="checkbox_span_class">{{ brand.0 }}</span>
                                             </label>
-                                            <span>Lorem Ipsum 1</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 1</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 1</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 1</span>
-                                        </div>
+                                            <br>
+                                        {% endfor %}
                                     </div>
                                     <hr class="line"/>
-                                    <label>Lorem Ipsum</label>
-                                    <a class="pull-right collapsed-icon-toggle" href="#coll-2" data-toggle="collapse">
-                                        <span class="glyphicon glyphicon-minus on-opened"></span>
-                                        <span class="glyphicon glyphicon-plus on-closed"></span>
-                                    </a>
+                                        <p class="filter_header">COLOR
+                                            <a class="pull-right collapsed-icon-toggle" href="#coll-2" data-toggle="collapse">
+                                                <span class="fa fa-minus on-opened"></span>
+                                                <span class="fa fa-plus on-closed"></span>
+                                            </a>
+                                        </p>
                                     <br/>
-                                    <div id="coll-2" class="scroll-v-250px collapse in">
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                        <label class="btn btn-default btn-xs ico">
-                                            <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                            <span class="icon glyphicon glyphicon-ok"></span>
-                                        </label>
-                                            <span>Lorem Ipsum 1</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
+                                    <div id="coll-2" class="collapse in">
+                                         {% for color in colors %}
+                                            <label style="font-size:12px;" class="checkbox_class">
+                                                <input type="checkbox" value="{{ color.0 }}" class="common_selector color">
+                                                {{ color.0 }}
                                             </label>
-                                            <span>Lorem Ipsum 2</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 3</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 4</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 5</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 6</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 7</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 8</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 9</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 10</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 11</span>
-                                        </div>
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                            <label class="btn btn-default btn-xs ico">
-                                                <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                                <span class="icon glyphicon glyphicon-ok"></span>
-                                            </label>
-                                            <span>Lorem Ipsum 12</span>
-                                        </div>
+                                            <br>
+                                         {% endfor %}
                                     </div>
                                     <hr class="line"/>
-                                    <label>Lorem Ipsum</label>
-                                    <a class="pull-right collapsed-icon-toggle" href="#coll-3" data-toggle="collapse">
-                                        <span class="glyphicon glyphicon-minus on-opened"></span>
-                                        <span class="glyphicon glyphicon-plus on-closed"></span>
-                                    </a>
+                                        <p class="filter_header">SIZE
+                                            <a class="pull-right collapsed-icon-toggle" href="#coll-3" data-toggle="collapse">
+                                                <span class="fa fa-minus on-opened"></span>
+                                                <span class="fa fa-plus on-closed"></span>
+                                            </a>
+                                        </p>
                                     <br/>
                                     <div id="coll-3" class="scroll-v-250px collapse in">
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                        <label class="btn btn-default btn-xs ico">
-                                            <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                            <span class="icon glyphicon glyphicon-ok"></span>
-                                        </label>
-                                            <span>Lorem Ipsum 1</span>
-                                        </div>
+                                        {% for size in sizes %}
+                                            <label style="font-size:12px;" class="checkbox_class">
+                                                <input type="checkbox" value="{{ size.0 }}" class="common_selector size">
+                                                {{ size.0 }}
+                                            </label>
+                                            <br>
+                                         {% endfor %}
                                     </div>
+
                                     <hr class="line"/>
-                                    <label>Lorem Ipsum</label>
-                                    <a class="pull-right collapsed-icon-toggle" href="#coll-4" data-toggle="collapse">
-                                        <span class="glyphicon glyphicon-minus on-opened"></span>
-                                        <span class="glyphicon glyphicon-plus on-closed"></span>
-                                    </a>
-                                    <br/>
-                                    <div id="coll-4" class="scroll-v-250px collapse in">
-                                        <div class="padding-v-xs" data-toggle="buttons">
-                                        <label class="btn btn-default btn-xs ico">
-                                            <input type="checkbox" name=""
-                                                   value="" autocomplete="off"/>
-                                            <span class="icon glyphicon glyphicon-ok"></span>
-                                        </label>
-                                            <span>Lorem Ipsum 1</span>
-                                        </div>
-                                    </div>
-                                    <hr class="line"/>
-                                    <button type="submit" class="btn btn-block btn-success">
-                                        <span class="glyphicon glyphicon-search"></span>
+                                    <button type="submit" class="btn btn-block btn-primary">
+                                        <span class="fa fa-search"></span>
                                     </button>
                                 </form>
                                 </div>
@@ -329,54 +218,69 @@
             <div class="col-md-9 col-sm-9 col-xs-9">
 
 
-                <div class="row">
-                    {% for product in products %}
+                <div class="row filter_data">
 
-                            <div class="col-md-4 col-sm-4">
-                                <span class="thumbnail">
-                                    {% if product.productimage_set.all %}
-                                        {% for item in product.productimage_set.all %}
-                                            {% if item.featured %}
-                                                <img class="img-responsive" src="{{ item.image.url }}"  style="height: 40% !important;" >
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% else %}
-                                        <img class="img-responsive" src="{% static 'images/default-image.png' %}">
-                                    {% endif %}
-                                    <h4>{{ product.title }}</h4>
-                                    <div class="ratings">
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star"></span>
-                                        <span class="glyphicon glyphicon-star-empty"></span>
-                                    </div>
-                                    <p>{{ product.description|truncatewords:15 }}</p>
-                                    <hr class="line">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6">
-                                            <p class="price">{{ product.price }}</p>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <!--<a href="{% url 'product.detail'  id=product.id %}" target="_blank" >	<button class="btn btn-info right" >View Detail</button></a>-->
-                                             <a href="{{ product.get_absolute_url }}" target="_blank" >	<button class="btn btn-info right" >View Detail</button></a>
-                                        </div>
 
-                                    </div>
+                        <div style="text-align:center;">
+                            <span>
+                                <i class="fa fa-spinner fa-spin" style="font-size:50px;margin-top: 100px;"></i>
+                            </span>
+                        </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6">
-                                            <a class="btn btn-primary left">Buy Now</a>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <a href="{% url 'carts.update_cart' product.id %}" class="btn btn-primary right">Add to Cart</a>
-                                        </div>
-                                    </div>
 
-                                </span>
-                            </div>
+<!--                    {% for product in products %}-->
 
-                    {% endfor %}
+<!--                            <div class="col-md-4 col-sm-4">-->
+<!--                                <span class="thumbnail">-->
+<!--                                    {% if product.productimage_set.all %}-->
+<!--                                        {% for item in product.productimage_set.all %}-->
+<!--                                            {% if item.featured %}-->
+<!--                                                <img class="img-responsive" src="{{ item.image.url }}"  style="height: 40% !important;" >-->
+<!--                                            {% endif %}-->
+<!--                                        {% endfor %}-->
+<!--                                    {% else %}-->
+<!--                                        <img class="img-responsive" src="{% static 'images/default-image.png' %}">-->
+<!--                                    {% endif %}-->
+<!--                                    <h4>{{ product.title }}</h4>-->
+<!--                                    <div class="ratings">-->
+<!--                                        <span class="glyphicon glyphicon-star"></span>-->
+<!--                                        <span class="glyphicon glyphicon-star"></span>-->
+<!--                                        <span class="glyphicon glyphicon-star"></span>-->
+<!--                                        <span class="glyphicon glyphicon-star"></span>-->
+<!--                                        <span class="glyphicon glyphicon-star-empty"></span>-->
+<!--                                    </div>-->
+<!--                                    <p>{{ product.description|truncatewords:15 }}</p>-->
+<!--                                    <p> <strong>Brand :</strong> {{ product.brand }}</p>-->
+<!--                                    <p> <strong>Color :</strong> {{ product.color }}</p>-->
+<!--                                    <p> <strong>Size :</strong> {{ product.size }}</p>-->
+<!--                                    <hr class="line">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-6 col-sm-6">-->
+<!--                                            <p class="price">{{ product.price }}</p>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-6 col-sm-6">-->
+<!--                                            &lt;!&ndash;<a href="{% url 'product.detail'  id=product.id %}" target="_blank" >	<button class="btn btn-info right" >View Detail</button></a>&ndash;&gt;-->
+<!--                                             <a href="{{ product.get_absolute_url }}" target="_blank" >	<button class="btn btn-info right" >View Detail</button></a>-->
+<!--                                        </div>-->
+
+<!--                                    </div>-->
+
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-md-6 col-sm-6">-->
+<!--                                            <a class="btn btn-primary left">Buy Now</a>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-md-6 col-sm-6">-->
+<!--                                            <a href="{% url 'carts.update_cart' product.id %}" class="btn btn-primary right">Add to Cart</a>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+
+<!--                                </span>-->
+<!--                            </div>-->
+
+<!--                    {% endfor %}-->
+
+
+
                 </div>
             </div>
         </div>
@@ -387,6 +291,46 @@
 
 {% block js_block %}
     <script type="text/javascript">
+        $(document).ready(function(){
 
+            filter_data();
+
+            function filter_data(){
+
+                //$('.filter_data').html('<div id="loading" style=""></div>');
+                var action        = 'fetch_data';
+                var minimum_price = $('#munimum_price').val();
+                var maximum_price = $('#maximum_price').val();
+                var brand         = get_filter('brand');
+                var color         = get_filter('color');
+                var size          = get_filter('size');
+
+                //alert(brand); return false;
+
+                $.ajax({
+                    url:      '{% url 'product.productlist.ajax' %}',
+                    method:   'post',
+                    dataType: 'json',
+                    data:     { csrfmiddlewaretoken: '{{ csrf_token }}', minimum_price: minimum_price, maximum_price: maximum_price, brand: JSON.stringify(brand), color: color, size: size },
+                    success: function(data){
+                        //$('.filter_data).html(data);
+                    }
+
+                });
+            }
+
+            function get_filter(class_name){
+                 var filter = [];
+                 $('.'+class_name+':checked').each(function(){
+                    filter.push($(this).val());
+                 });
+                 return filter;
+            }
+
+            $('.common_selector').click(function(){
+                filter_data();
+            });
+
+        });
     </script>
 {% endblock %}

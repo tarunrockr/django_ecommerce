@@ -5,6 +5,7 @@ from django.http import HttpResponse, Http404, JsonResponse
 # Create your views here.
 from .models import Cart, CartItem
 from  products.models import Product
+import  json
 
 def show_cart(request):
 
@@ -24,14 +25,45 @@ def show_cart(request):
     return render(request, template, context)
 
 def update_cart(request, id):
+    #print(request.session.keys())
 
     # Fetch product from database that is going to be add in cart
     try:
         product = Product.objects.get(pk=id)
     except Product.DoesNotExist:
         pass
-    except:
-        pass
+
+    # #Checking if user logged in or not , If logged in then store cart in session otherwise in database
+    # if 'logged_in' in request.session:
+    #     print('loggedin')
+    # else:
+    #     """
+    #         If cart session doesn't exists then create cart and add item, else check item in cart
+    #         if it doesn't exists add item other update the quantity of that item
+    #     """
+    #     if 'cart_data' in request.session:
+    #         print('hgjkhkj hgjgjh')
+    #     else:
+    #
+    #         # Creating a dictionary to store item detail
+    #         session_dict = dict()
+    #         session_product = {
+    #                             'product_name' : product.title,
+    #                             'product_price': str(product.price),
+    #                             'quantity'     : str(1),
+    #                             'line_total'   : str(product.price)
+    #                           }
+    #         #session_product = json.dumps(session_product)
+    #         session_dict[str(product.id)] = session_product
+    #         # Creating an empty cart dictionary in cart
+    #         request.session['cart_data'] = session_dict
+    #         request.session.modified = True
+    #         # Adding product in cart session
+    #         #request.session['cart_data'][str(product.id)] = session_product
+    #         print(request.session['cart_data'])
+
+
+    # Commented Previous cart functionality
 
     # Checking if cart_id is available in session or not, if it is available store it in cart_id
     try:
@@ -67,6 +99,7 @@ def update_cart(request, id):
     request.session['cart_item_count'] = cart.cartitem_set.count()
     cart.total = new_total
     cart.save()
+    # Commented Previous cart functionality
 
     return HttpResponseRedirect(reverse('carts.show_cart'))
 
