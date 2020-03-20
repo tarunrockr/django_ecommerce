@@ -299,7 +299,7 @@
 
                 //$('.filter_data').html('<div id="loading" style=""></div>');
                 var action        = 'fetch_data';
-                var minimum_price = $('#munimum_price').val();
+                var minimum_price = $('#minimum_price').val();
                 var maximum_price = $('#maximum_price').val();
                 var brand         = get_filter('brand');
                 var color         = get_filter('color');
@@ -311,9 +311,10 @@
                     url:      '{% url 'product.productlist.ajax' %}',
                     method:   'post',
                     dataType: 'json',
-                    data:     { csrfmiddlewaretoken: '{{ csrf_token }}', minimum_price: minimum_price, maximum_price: maximum_price, brand: JSON.stringify(brand), color: color, size: size },
+                    data:     { csrfmiddlewaretoken: '{{ csrf_token }}', minimum_price: minimum_price, maximum_price: maximum_price, brand: JSON.stringify(brand), color: JSON.stringify(color), size: JSON.stringify(size) },
                     success: function(data){
                         //$('.filter_data).html(data);
+                        $('.filter_data').html(data[0]['data']);
                     }
 
                 });
