@@ -140,9 +140,11 @@
                                         </p>
                                     <br/>
                                     <div id="coll-0" class="collapse in">
-                                        <input type="text" placeholder="150" id="minimum_price" style="width: 40%;" />
-                                        -
-                                        <input type="text" placeholder="10000" id="maximum_price" style="width: 40%;" />
+
+                                            <div id="slider-3" class="search-slider"></div><br>
+                                            <input type="text" class="form-control" readonly placeholder="0" id="minimum_price" style="width: 47%; display:inline-block;" />
+                                            -
+                                            <input type="text" class="form-control" readonly placeholder="10000" id="maximum_price" style="width: 47%; display:inline-block;" />
                                     </div>
 
 
@@ -217,6 +219,20 @@
             </div>
             <div class="col-md-9 col-sm-9 col-xs-9">
 
+                <div class="row">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="col-md-4">
+                                <label>Sort By</label>
+                                <select class="form-control sort_by_class" name="sort_by" id="sort_by" style="display:inline-block;">
+                                    <option value="">Select Option</option>
+                                    <option value="price_up">Price -- Low to High</option>
+                                    <option value="price_down">Price -- High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row filter_data">
 
@@ -297,26 +313,22 @@
 
             function filter_data(){
 
-                //$('.filter_data').html('<div id="loading" style=""></div>');
                 var action        = 'fetch_data';
                 var minimum_price = $('#minimum_price').val();
                 var maximum_price = $('#maximum_price').val();
                 var brand         = get_filter('brand');
                 var color         = get_filter('color');
                 var size          = get_filter('size');
-
-                //alert(brand); return false;
+                var last_id       = 0
 
                 $.ajax({
                     url:      '{% url 'product.productlist.ajax' %}',
                     method:   'post',
                     dataType: 'json',
-                    data:     { csrfmiddlewaretoken: '{{ csrf_token }}', minimum_price: minimum_price, maximum_price: maximum_price, brand: JSON.stringify(brand), color: JSON.stringify(color), size: JSON.stringify(size) },
+                    data:     { csrfmiddlewaretoken: '{{ csrf_token }}', minimum_price: minimum_price, maximum_price: maximum_price,last_id: last_id,  brand: JSON.stringify(brand), color: JSON.stringify(color), size: JSON.stringify(size) },
                     success: function(data){
-                        //$('.filter_data).html(data);
                         $('.filter_data').html(data[0]['data']);
                     }
-
                 });
             }
 
@@ -331,6 +343,59 @@
             $('.common_selector').click(function(){
                 filter_data();
             });
+
+            $('.sort_by_class').on('change',function(){
+                filter_data();
+            });
+
+            $(function() {
+                $( "#slider-3" ).slider({
+                   range:true,
+                   min: 0,
+                   max: 10000,
+                   values: [ 0, 10000 ],
+                   slide: function( event, ui ) {
+                      $("#minimum_price").val( ui.values[0] );
+                      $("#maximum_price").val( ui.values[1] );
+                      filter_data();
+                   }
+                });
+                $("#minimum_price").val( $( "#slider-3" ).slider( "values", 0 ) );
+                $("#maximum_price").val( $( "#slider-3" ).slider( "values", 1 ) );
+             });
+
+             /// For load More functionality
+
+             $(document).on('click', '.load_more_class', function(){
+                filter_data_load_more();
+             });
+
+            function filter_data_load_more(){
+
+                var action        = 'fetch_data';
+                var minimum_price = $('#minimum_price').val();
+                var maximum_price = $('#maximum_price').val();
+                var brand         = get_filter('brand');
+                var color         = get_filter('color');
+                var size          = get_filter('size');
+                var last_id       = $('.load_more_class').attr('last-id');
+
+                $.ajax({
+                    url:      '{% url 'product.productlist.ajax' %}',
+                    method:   'post',
+                    dataType: 'json',
+                    beforeSend:function(){
+                        $('.load_more_class').html('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i>');
+                    },
+                    data:     { csrfmiddlewaretoken: '{{ csrf_token }}', minimum_price: minimum_price, maximum_price: maximum_price, last_id: last_id, brand: JSON.stringify(brand), color: JSON.stringify(color), size: JSON.stringify(size) },
+                    success: function(data){
+                        $('.load_more_class').remove();
+                        if(data[0]['data'] != ""){
+                            $('.filter_data').append(data[0]['data']);
+                        }
+                    }
+                });
+            }
 
         });
     </script>

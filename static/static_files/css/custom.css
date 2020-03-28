@@ -141,3 +141,15 @@ label.error{
     color: red;
     font-size: 13px;
 }
+
+.search-slider{
+    width: 92%;
+    margin-left: 4%;
+}
+
+.load_more_class{
+    margin-left: 2%;
+    border-radius: 0px;
+    background-color: #333;
+    color: #fff;
+}
